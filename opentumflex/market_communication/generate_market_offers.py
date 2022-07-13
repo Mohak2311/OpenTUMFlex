@@ -15,16 +15,16 @@ import pandas as pd
 from datetime import datetime
 import os
 
-def save_offers(my_ems, market='comax'):
+def save_offers(test, my_ems, market='comax'):
     device = list(my_ems['flexopts'].keys())   
     if market == 'comax':
         for i in range(len(device)):
-            save_offers_comax(my_ems,  device[i],  filetype='csv')
+            save_offers_comax(test, my_ems,  device[i],  filetype='csv')
     elif market == 'alf':
         for i in range(len(device)):
-            save_offers_alf(my_ems,  device[i])
+            save_offers_alf(test, my_ems,  device[i])
 
-def save_offers_comax(my_ems,  device,  filetype='xlsx'):
+def save_offers_comax(test, my_ems,  device,  filetype='xlsx'):
     """
     
 
@@ -45,7 +45,7 @@ def save_offers_comax(my_ems,  device,  filetype='xlsx'):
     # Find path and check for a result folder
     cwd = os.getcwd()
     mdir = "output" 
-    path = os.path.join(cwd, mdir)
+    path = os.path.join(cwd, test)
     if not os.path.exists(path):
         os.mkdir(path)
     file_name = device+'_flex_offers'
@@ -53,16 +53,16 @@ def save_offers_comax(my_ems,  device,  filetype='xlsx'):
     
     # Save flex offers in the requested format
     if filetype == 'xlsx':
-        my_ems['flexopts'][device].to_excel(new_cwd+'.xlsx')
+        my_ems['flexopts'][device].to_excel(new_cwd + '.xlsx')
         # print("Excel file generated! Available on " + path)
     elif filetype == 'csv':
-        my_ems['flexopts'][device].to_csv(new_cwd+'.csv', sep=';', decimal='.', index=False)
+        my_ems['flexopts'][device].to_csv(new_cwd + '.csv', sep=';', decimal='.', index=False)
         # print("CSV file generated! Available on " + path)
     else:
         print('Unknown file format - .xlsx/.csv supported')
 
 
-def save_offers_alf(my_ems, device):
+def save_offers_alf(test, my_ems, device):
     """
 
 
@@ -111,7 +111,7 @@ def save_offers_alf(my_ems, device):
     cwd = os.getcwd()
     # back_cwd = os.path.dirname(cwd)
     mdir = "output"
-    path = os.path.join(cwd, mdir)
+    path = os.path.join(cwd, test)
     if not os.path.exists(path):
         os.mkdir(path)
 
