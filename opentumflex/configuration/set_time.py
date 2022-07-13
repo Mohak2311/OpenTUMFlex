@@ -32,11 +32,13 @@ def initialize_time_setting(t_inval, start_time, end_time, d_inval=15, days=1):
 
     """
     ems = {'time_data': {}}
+    # ems['time_data']['nsteps'] = 192
     ems['time_data']['t_inval'] = t_inval  # set the time interval in OpenTUMFlex
     ems['time_data']['d_inval'] = d_inval  # set the t ime inverval of the input data (load profiles, prices, weather..)
     ems['time_data']['start_time'] = start_time  # '2019-12-18 00:00'
     ems['time_data']['end_time'] = end_time  # '2019-12-18 23:45'
     ems['time_data']['days'] = days
+    
     ems.update(update_time_data(ems))
 
     # Initialize EMS
