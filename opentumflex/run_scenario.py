@@ -19,7 +19,7 @@ import opentumflex
 import os
 
 
-def run_scenario(scenario, path_input, path_results, solver='glpk', time_limit=30, troubleshooting=True,
+def run_scenario(test, scenario, path_input, path_results, solver='glpk', time_limit=30, troubleshooting=True,
                  show_opt_balance=True, show_opt_soc=True, show_flex_res=True,
                  save_opt_res=True, show_aggregated_flex=True, save_flex_offers=False,
                  convert_input_tocsv=True, show_aggregated_flex_price='bar'):
@@ -93,21 +93,21 @@ def run_scenario(scenario, path_input, path_results, solver='glpk', time_limit=3
 
     # save flex offers
     if save_flex_offers:
-        opentumflex.save_offers(my_ems, market='comax')
+        opentumflex.save_offers(test, my_ems, market='comax')
     
     return my_ems
 
 
-if __name__ == '__main__':
-    base_dir = os.path.abspath(os.getcwd())
-    input_file = r'\..\input\input_data.csv'
-    output_dir = r'\..\results'
-    path_input_data = base_dir + input_file
-    path_results = base_dir + output_dir
+#if __name__ == '__main__':
+ #   base_dir = os.path.abspath(os.getcwd())
+  #  input_file = r'\..\input\input_data.csv'
+   # output_dir = r'\..\results'
+    #path_input_data = base_dir + input_file
+    #path_results = base_dir + output_dir
 
-    ems = run_scenario(opentumflex.scenario_apartment,
-                       path_input=path_input_data, path_results=path_results,
-                       fcst_only=True, time_limit=10,
-                       show_flex_res=True, show_opt_res=True, save_opt_res=False,
-                       convert_input_tocsv=True, show_aggregated_flex=True, 
-                       show_aggregated_flex_price='bar', troubleshooting=False)
+    #ems = run_scenario(test, opentumflex.scenario_apartment,
+     #                  path_input=path_input_data, path_results=test,
+      #                 fcst_only=True, time_limit=10,
+       #                show_flex_res=True, show_opt_res=True, save_opt_res=False,
+        #               convert_input_tocsv=True, show_aggregated_flex=True,
+         #              show_aggregated_flex_price='bar', troubleshooting=False)
